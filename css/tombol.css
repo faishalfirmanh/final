@@ -1,0 +1,40 @@
+.buttonNavbarTambah{
+  background-color: #00CED1;
+ border-radius: 12px;
+ padding: 10px 10px;
+ text-align: center;
+ font-size: 14px;
+ margin: 4px 2px;
+ cursor: cell;
+ font-family: arial black;
+}
+.butonNavList{
+  background-color: #FF8C00;
+ border-radius: 12px;
+ padding: 10px 10px;
+ text-align: center;
+ font-size: 14px;
+ margin: 4px 2px;
+ cursor:pointer;
+  font-family: arial black;
+}
+.buttnKeluar{
+  background-color: #FFA29A;
+ border-radius: 12px;
+ padding: 10px 10px;
+ text-align: center;
+ font-size: 14px;
+ margin: 4px 2px;
+ cursor:pointer;
+  font-family: arial black;
+
+}
+.textAdmin{
+ font-size: 24px;
+font-weight: bold;
+ cursor:none;
+font-family: Comic Sans Ms;
+}
+.iconAdmin{
+  background-image: url(css/halo.svg);
+}
