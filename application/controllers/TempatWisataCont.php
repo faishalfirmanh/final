@@ -14,13 +14,40 @@ class TempatWisataCont extends CI_Controller {
 		public function index(){
 			$this->load->helper('text');
  		 $this->load->model('TempatModel');
- 			$data["data_tempat"]=$this->TempatModel->getDataTempat(); //isi array harus sama dengan view yang dilist
- 			$this->load->view('List_View', $data);
+		 $jumlah_data = $this->TempatModel->jumlah_data();
+		 $this->load->library('pagination');
+		 	$config['base_url'] = base_url().'index.php/TempatWisataCont/index/';
+		 $config['total_rows'] = $jumlah_data;
+		 $config['per_page'] = 4;
+		 $from = $this->uri->segment(3);
+		 $this->pagination->initialize($config);
+
+ 			// $data["data_tempat"]=$this->TempatModel->getDataTempat(); //isi array harus sama dengan view yang dilist
+			$data["data_tempat"]=$this->TempatModel->data($config['per_page'],$from);
+			$this->load->view('crudTempat/List_View', $data);
  			 }
+
+			 public function indexkategori(){
+				$kategori=$this->input->post('kategori');
+	 			$this->load->helper('text');
+	  		 $this->load->model('TempatModel');
+	 		 $jumlah_data = $this->TempatModel->jumlah_data_kategori($kategori);
+	 		 $this->load->library('pagination');
+	 		 	$config['base_url'] = base_url().'index.php/TempatWisataCont/indexkategori/';
+	 		 $config['total_rows'] = $jumlah_data;
+	 		 $config['per_page'] = 4;
+	 		 $from = $this->uri->segment(3);
+	 		 $this->pagination->initialize($config);
+
+	  			// $data["data_tempat"]=$this->TempatModel->getDataTempat(); //isi array harus sama dengan view yang dilist
+	 			$data["data_tempat"]=$this->TempatModel->datakategori($kategori,$config['per_page'],$from);
+	 			$this->load->view('crudTempat/List_View', $data);
+	  			 }
+
     public function Create()
 	{
 
-		//$this->form_validation->set_rules('foto','foto','trim|required');
+		// $this->form_validation->set_rules('foto','foto','trim|required');
 		$this->form_validation->set_rules('nama','nama','trim|required');
 		$this->form_validation->set_rules('penjelasan','penjelasan','trim|required');
 		$this->form_validation->set_rules('jambuka','jambuka','trim|required');
@@ -28,11 +55,10 @@ class TempatWisataCont extends CI_Controller {
 		$this->form_validation->set_rules('lat','lat','trim|required');
 		$this->form_validation->set_rules('longg','longg','trim|required');
 
-
-
 		if($this->form_validation->run()==FALSE)
 		{
-			$this->load->view('TambahTempatView');
+			$data['kecamatan']=$this->TempatModel->PanggilKecamatan();
+			$this->load->view('crudTempat/TambahTempatView',$data);
 		}
 		else
 			{ //
@@ -48,7 +74,7 @@ class TempatWisataCont extends CI_Controller {
 				{
 					echo $this->upload->display_errors();
 					$error = array('error' => $this->upload->display_errors());
-					$this->load->view('List_View',$error);
+					$this->load->view('Admin/List_View',$error);
 				}
 				else{
 						$upload_data =$this->upload->data();
@@ -57,18 +83,16 @@ class TempatWisataCont extends CI_Controller {
 						$config['width']=150;
 						$config['height']=150;
 						$config['overwrite']=TRUE;
-
 						$this->load->library('image_lib',$config);
+						$this->image_lib->clear();
 						$this->image_lib->resize();
-
 						$this->load->model('TempatModel');
 						$this->TempatModel->insertTempat();
-						$this->load->view('Tambah_Sukses');
+
+						$this->load->view('crudTempat/Tambah_Sukses');
 				//
 				}
-				// $this->load->model('TempatModel');
-				// $this->TempatModel->insertTempat();
-				// $this->load->view('Tambah_Sukses');
+
 			}
 	}
 
@@ -89,21 +113,21 @@ class TempatWisataCont extends CI_Controller {
 		}else
 		{
 		$this->TempatModel->UpdateTempat($id_tempat);
-		$this->load->view('Edit_event_sukses');
+		$this->load->view('crudTempat/Edit_event_sukses');
 		}
 	}
 
 	public function peta($value)
 	{
 		 $data["data_tempat"]=$this->TempatModel->getTempat($value)->row_array();
-		 $this->load->view('Peta_View', $data);
+		 $this->load->view('Admin/Peta_View', $data);
 	}
 
 	public function hapus($id_tempat)
 	{
 		$this->load->model('TempatModel');
 		$this->TempatModel->delete($id_tempat);
-		$this->load->view('HapusSukses');
+		$this->load->view('crudTempat/HapusSukses');
 	}
 
 

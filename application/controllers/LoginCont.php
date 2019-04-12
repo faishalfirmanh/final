@@ -40,7 +40,7 @@ class LoginCont extends CI_Controller {
 				 $this->form_validation->set_rules('username', 'username', 'trim|required');
 				 $this->form_validation->set_rules('password', 'password', 'trim|required|callback_cekDb');
 				 if($this->form_validation->run() == FALSE){
-					 	$this->load->view('Admin/loginView');
+					 	$this->load->view('crudTempat/loginView');
 				 }else {
 				 		// redirect('/HomeCont/home','refresh');
 						redirect('/TempatWisataCont','refresh');
@@ -72,10 +72,11 @@ class LoginCont extends CI_Controller {
 
 				public function keluar()
 				{
-					$this->load->helper('url');
-					$this->session->unset_userdata('logged_in');
+
+					// $this->session->unset_userdata('logged_in');
 					$this->session->sess_destroy();
-					redirect('LoginCont','refresh');
+					// redirect('LoginCont','refresh');
+					redirect(base_url('LoginCont'));
 				}
 
 	function home(){

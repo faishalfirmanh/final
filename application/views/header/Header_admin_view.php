@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-link buttonNavbarTambah" href="<?php echo site_url()?>/TempatWisataCont/Create"><span class="glyphicon glyphicon-screenshot"></span> tambah tempat</a>
-            <a class="nav-item nav-link buttnKeluar btn-info" href="<?php echo site_url(); ?>/HomeCont/peta"><span class="glyphicon glyphicon-globe"></span>Daftar Kunjungan</a>
+            <!-- <a class="nav-item nav-link buttnKeluar btn-info" href="<?php echo site_url(); ?>/HomeCont/peta"><span class="glyphicon glyphicon-globe"></span>Daftar Kunjungan</a> -->
             <a class="nav-item nav-link butonNavList btn-info" href="<?php echo site_url(); ?>/TempatWisataCont"><span class="glyphicon glyphicon-list"></span> Daftar Tempat</a>
             <a class="nav-link buttnKeluar btn-info" href="<?php echo site_url()?>/LoginCont/keluar"><span class="glyphicon glyphicon-log-out"></span> LogOut</a>
           </div>

@@ -29,32 +29,6 @@
       <a href="<?php echo site_url('HomeCont/home'); ?>">Home</a>
     </li>
     <li class="menu-item">
-      <a href="#">About</a>
-    </li>
-    <li class="menu-item">
-      <a href="#">Archives</a>
-    </li>
-    <li class="menu-item">
-      <a href="#">Categories</a>
-      <ul class="sub-menu">
-        <li class="menu-item">
-          <a href="#">Reading</a>
-        </li>
-        <li class="menu-item">
-          <a href="#">Writing</a>
-        </li>
-        <li class="menu-item">
-          <a href="#">Arithmatic</a>
-        </li>
-        <li class="menu-item">
-          <a href="#">Something Long</a>
-        </li>
-        <li class="menu-item">
-          <a href="#">Something Else</a>
-        </li>
-      </ul>
-    </li>
-    <li class="menu-item">
       <a href="<?php echo site_url(); ?>/LoginCont">Login</a>
     </li>
   </ul>

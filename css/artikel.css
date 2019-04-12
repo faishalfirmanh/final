@@ -1,0 +1,17 @@
+.kertas{
+  background-color: #a1d6e2;
+  padding: 80px;
+  text-align: justify;
+
+}
+.gambar{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.isi{
+  font-size: 20px;
+
+}
