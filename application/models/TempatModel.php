@@ -10,6 +10,13 @@ class TempatModel extends CI_Model
     // code...
   }
 
+  public function getTempatJalur($id)
+  {
+    $this->db->where('id',$id);
+    $data = $this->db->get('tempatwisata');
+    return $data->result(); 
+  }
+
 
     public function getDataTempat()
   	{
@@ -20,6 +27,7 @@ class TempatModel extends CI_Model
     public function getTempat($id)
   {
     $this->db->where('id',$id);
+    $this->db->join('Kecamatan', 'Kecamatan.idKec = tempatwisata.idKec');
     $query = $this->db->get('tempatwisata');
     return $query;
   }
@@ -93,7 +101,7 @@ function jumlah_data_kategori($kategori,$kecamatan){
   	{
   		$obj = array
   		(
-  			'foto' =>$this->input->post('foto'),
+  			//'foto' =>$this->upload->data('file_name'),
   			'nama' =>$this->input->post('nama'),
   			'penjelasan' =>$this->input->post('penjelasan'),
   			'jambuka' =>$this->input->post('jambuka'),
@@ -101,6 +109,7 @@ function jumlah_data_kategori($kategori,$kecamatan){
         'lat'=>$this->input->post('lat'),
         'longg'=>$this->input->post('longg'),
         'kategori'=>$this->input->post('kategori')
+
   			// 'foto'=>$this->upload->data('file_name')
   		);
   		$this->db->where('id',$id);

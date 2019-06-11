@@ -4,7 +4,7 @@
     <?php $this->load->view('header/Header_admin_view'); ?>
     <link rel="stylesheet" href="<?php echo base_url(); ?>/css/navbar.css" type="text/css">
     <meta charset="utf-8">
-    <title></title>
+    <title>Halaman Admin</title>
   </head>
   <body>
     <?php echo validation_errors(); ?>
@@ -21,7 +21,8 @@
         </div>
         <div class="form-group">
           <label for="">masukkan penjelasan</label>
-          <input type="text" class="form-control" name="penjelasan" placeholder="misal alamat atau diskripsi candi">
+          <!-- <input type="text" class="form-control" name="penjelasan" placeholder="misal alamat atau diskripsi candi"> -->
+          <textarea class="form-control" name="penjelasan" rows="5" id="penjelasan"></textarea>
         </div>
         <div class="form-group">
           <label for="">masukkan jam buka</label>

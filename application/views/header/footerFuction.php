@@ -7,7 +7,7 @@
   <body>
     <footer class="footer-area">
       <!-- Main Footer Area -->
-      <div class="main-footer bg-img bg-overlay section-padding-80-0" style="background-image: url(img/bg-img/3.jpg);">
+      <div class="main-footer bg-img bg-overlay section-padding-80-0" <?=base_url("/cssfarmie/img/bg-img/3.jpg")?>>
         <div class="container">
           <div class="row">
 
@@ -61,10 +61,6 @@
           </div>
         </div>
       </div>
-
-
-
-
       <!-- Copywrite Area  -->
       <div class="copywrite-area">
         <div class="container">
@@ -96,36 +92,6 @@
 
     <!-- ##### All Javascript Files ##### -->
     <!-- jquery 2.2.4  -->
-      <script src="<?php echo base_url(); ?>/cssfarmie/js/jquery.min.js" type="text/javascript"></script>
-      <script src="<?php echo base_url(); ?>/cssfarmie/js/popper.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>/cssfarmie/js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!-- Popper js -->
-
-    <!-- Bootstrap js -->
-
-    <!-- Owl Carousel js -->
-
-    <script src="<?php echo base_url(); ?>/cssfarmie/js/classynav.js" type="text/javascript"></script>
-    <!-- Classynav -->
-      <script src="<?php echo base_url(); ?>/cssfarmie/js/classynav.js" type="text/javascript"></script>
-    <!-- Wow js -->
-      <script src="<?php echo base_url(); ?>/cssfarmie/js/wow.min.js" type="text/javascript"></script>
-      <script src="<?php echo base_url(); ?>/cssfarmie/js/wow.min.js" type="text/javascript"></script>
-
-    <!-- <script src="js/wow.min.js"></script> -->
-    <!-- Sticky js -->
-
-      <script src="<?php echo base_url(); ?>/cssfarmie/js/jquery.sticky.js" type="text/javascript"></script>
-    <!-- Magnific Popup js -->
-    <script src="<?php echo base_url(); ?>/cssfarmie/js/jquery.magnific-popup.min.js" type="text/javascript"></script>
-    <!-- Scrollup js -->
-    <script src="<?php echo base_url(); ?>/cssfarmie/js/jquery.scrollup.min.js" type="text/javascript"></script>
-    <!-- Jarallax js -->
-    <script src="<?php echo base_url(); ?>/cssfarmie/js/jarallax.min.js" type="text/javascript"></script>
-    <!-- Jarallax Video js -->
-    <script src="<?php echo base_url(); ?>/cssfarmie/js/jarallax-video.min.js" type="text/javascript"></script>
-    <!-- Active js -->
-    <script src="<?php echo base_url(); ?>/cssfarmie/js/active.js" type="text/javascript"></script>
+    <?php $this->load->view('Link'); ?>
   </body>
 </html>

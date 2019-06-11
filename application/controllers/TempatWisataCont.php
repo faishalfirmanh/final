@@ -9,6 +9,7 @@ class TempatWisataCont extends CI_Controller {
 				$this->load->helper('url','date','form','text');
 				$this->load->library('form_validation');
 				$this->load->model(array('TempatModel'));
+				$this->load->model('TempatModel');
 
 		}
 		public function index(){
@@ -97,31 +98,68 @@ class TempatWisataCont extends CI_Controller {
 	}
 
 		public function Update($id_tempat){
-		$this->form_validation->set_rules('acara', 'acara','trim|required');
-		$this->form_validation->set_rules('tanggal', 'tanggal', 'trim|required');
-		$this->form_validation->set_rules('lokasi', 'lokasi', 'trim|required');
-		$this->form_validation->set_rules('harga_tiket','harga_tiket','trim|required');
-		$this->form_validation->set_rules('jumlah','jumlah','trim|required');
 
 		$this->load->model('TempatModel');
-		$data['data_tempat'] = $this->TempatModel->getTempat($id_tempat);
-		$this->TempatModel->getTempat($id_tempat);
+		$data['kecamatan']=$this->TempatModel->PanggilKecamatan();
+		$data['data_tempat'] = $this->TempatModel->getTempat($id_tempat)->row_array();
+		$this->load->view('crudTempat/EditTempatView',$data);
 
-		if($this->form_validation->run()==FALSE)
-		{
-		$this->load->view('EditTempatView',$data);
-		}else
-		{
-		$this->TempatModel->UpdateTempat($id_tempat);
-		$this->load->view('crudTempat/Edit_event_sukses');
-		}
 	}
 
-	public function peta($value)
-	{
-		 $data["data_tempat"]=$this->TempatModel->getTempat($value)->row_array();
-		 $this->load->view('Admin/Peta_View', $data);
-	}
+	public function Editnf($id){
+
+		$this->load->model('TempatModel');
+		$this->TempatModel->UpdateTempat($id);
+
+		$this->load->view('crudTempat/Edit_Tempat_Sukses');
+
+}
+
+
+
+	public function Edit($id)
+{
+			$config['upload_path'] = './assets/upload';
+			$config['allowed_types'] = 'jpg|png|gif';
+			$config['max_size']  = '1000000';
+			$config['max_width']  = '10240';
+			$config['max_height']  = '7680';
+
+			$this->load->library('upload',$config);
+
+			if ( ! $this->upload->do_upload('foto'))
+			{
+				echo "Gagal";
+				echo $this->upload->display_errors();
+				$this->load->model('TempatModel');
+				$data['kecamatan']=$this->TempatModel->PanggilKecamatan();
+				$data['data_tempat'] = $this->TempatModel->getTempat($id)->row_array();
+				$error = array('error' => $this->upload->display_errors());
+				$this->load->view('crudTempat/EditTempatView',$data);
+			}
+			else{
+					$upload_data =$this->upload->data();
+					$config['source_image']=$upload_data['full_path'];
+					$config['maintain_ratio']=TRUE;
+					$config['width']=150;
+					$config['height']=150;
+					$config['overwrite']=TRUE;
+					$this->load->library('image_lib',$config);
+					$this->image_lib->clear();
+					$this->image_lib->resize();
+					$this->load->model('TempatModel');
+					$this->TempatModel->UpdateTempat($id);
+
+					$this->load->view('crudTempat/Edit_Tempat_Sukses');
+			//
+			}
+}
+
+	// public function peta($value)
+	// {
+	// 	 $data["data_tempat"]=$this->TempatModel->getTempat($value)->row_array();
+	// 	 $this->load->view('Admin/Peta_View', $data);
+	// }
 
 	public function hapus($id_tempat)
 	{

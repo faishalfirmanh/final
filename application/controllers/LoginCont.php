@@ -29,7 +29,7 @@ class LoginCont extends CI_Controller {
 	 public function index(){
 		 	$this->load->helper('url','form');
 			$this->load->library('form_validation');
-			$this->load->view('Admin/LoginView');
+			 $this->load->view('Admin/LoginView');
 			 }
 
 
@@ -75,8 +75,8 @@ class LoginCont extends CI_Controller {
 
 					// $this->session->unset_userdata('logged_in');
 					$this->session->sess_destroy();
-					// redirect('LoginCont','refresh');
-					redirect(base_url('LoginCont'));
+					redirect('LoginCont','refresh');
+					// redirect(base_url('LoginCont'));
 				}
 
 	function home(){

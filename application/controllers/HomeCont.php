@@ -25,6 +25,9 @@ class HomeCont extends CI_Controller {
 {
 		$this->load->view('/User/UserHomeView');
 }
+public function coba(){
+	$this->load->view('Coba');
+}
 
 	/**
 	 * Index Page for this controller.

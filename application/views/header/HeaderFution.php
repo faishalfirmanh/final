@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="icon" href="<?php echo base_url(); ?>/cssfarmie/img/core-img/favicon.ico">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/cssfarmie/style.css" type="text/css">
+  
   </head>
   <body>
     <div class="preloader d-flex align-items-center justify-content-center">

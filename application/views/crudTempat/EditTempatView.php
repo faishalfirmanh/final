@@ -7,16 +7,31 @@
   </head>
   <body>
     <?php echo validation_errors(); ?>
-    <?php form_open_multipart('TempatWisataCont/Update/'.$this->uri->segment(3)); ?>
-    <input type="text" name="foto" class="form-control" value="<?php echo $data_tempat[0]->foto?>"><br>
-    <input type="text" name="nama" class="form-control" value="<?php echo $data_tempat[0]->nama?>"><br>
-    <input type="text" name="penjelasan" class="form-control" value="<?php echo $data_tempat[0]->penjelasan?>"><br>
-    <input type="text" name="jambuka" class="form-control" value="<?php echo $data_tempat[0]->jambuka?>"><br>
-    <input type="text" name="tiket" class="form-control" value="<?php echo $data_tempat[0]->tiket?>"><br>
-    <input type="text" name="lat" class="form-control" value="<?php echo $data_tempat[0]->lat?>"><br>
-    <input type="text" name="longg" class="form-control" value="<?php echo $data_tempat[0]->longg?>"><br>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    <?php echo form_close(); ?>
+    <?php form_open_multipart('TempatWisataCont/Editnf/'.$this->uri->segment(3)); ?>
+
+    <input type="file" name="foto"><br>
+    <input type="text" name="nama" class="form-control" value="<?php echo $data_tempat['nama'] ?>"><br>
+    <input type="text" name="penjelasan" class="form-control" value="<?php echo $data_tempat['penjelasan'] ?>"><br>
+    <input type="text" name="jambuka" class="form-control" value="<?php echo $data_tempat['jambuka'] ?>"required><br>
+    <input type="text" name="tiket" class="form-control" value="<?php echo $data_tempat['tiket'] ?>"required><br>
+    <input type="text" name="lat" class="form-control" value="<?php echo $data_tempat['lat'] ?>"required><br>
+    <input type="text" name="longg" class="form-control" value="<?php echo $data_tempat['longg'] ?>" required><br>
+
+    <div class="form-group">
+      <label for="">pilih kecamatan</label>
+      <select name="idKec" required>
+        <option value="<?php echo $data_tempat['idKec'] ?>"><?php echo $data_tempat['namaKecamatan'] ?></option>
+        <?php foreach ($kecamatan as $key) { ?>
+        <option value="<?php echo $key->idKec; ?>"><?php echo $key->namaKecamatan; ?></option>
+      <?php } ?>
+      </select>
+    </div>
+      <?php echo form_close(); ?>
+    <a href="<?php echo site_url('TempatWisataCont/Editnf/'.$this->uri->segment(3)) ?>">
+    <button type="button" class="btn btn-primary">Submit</button>
+    </a>
+
+
   </body>
     <?php $this->load->view('header/FooterViewAdmin') ?>
 </html>

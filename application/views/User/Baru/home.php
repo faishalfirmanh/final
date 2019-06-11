@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="description" content="">
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-  <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <!-- Title -->
+  <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+  <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
   <title>Hello  &amp; User</title>
   <!-- Favicon -->
   <link rel="icon" href="<?php echo base_url(); ?>/cssfarmie/img/core-img/favicon.ico">
-  <link rel="stylesheet" href="<?php echo base_url(); ?>/cssfarmie/style.css" type="text/css">
+  <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/cssfarmie/style.css" type="text/css"> -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>/cssfarmie/css/baru.css" type="text/css">
   <script src="<?php echo base_url(); ?>/mapicon/dist/js/map-icons.js" type="text/javascript"></script>
   <link rel=stylesheet href="<?php echo base_url(); ?>/mapicon/dist/css/map-icons.css" type="text/css"></script>
@@ -24,24 +25,41 @@
     $long=$this->session->userdata('long');
   }
   else {
-    $lat=-7.946093;
-    $long=112.615494;
-  }
+    $lat=-7.311126;
+    $long=112.428169;
 
+  }
    ?>
-   <style>
-     /* Always set the map height explicitly to define the size of the div
-      * element that contains the map. */
-     #map {
-       height: 425px;
-       width: 80%;
-     }
-     /* Optional: Makes the sample page fill the window. */
-     html, body {
-       height: 80%;
-       margin: 0;
-       padding: 0;
-     }
+     <script type="text/javascript">
+     function addMarkersToMap(map) {
+
+        if(navigator.geolocation){// iki
+            navigator.geolocation.getCurrentPosition(function(position){
+                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+                let lattitude = document.getElementById("lat").value = position.coords.latitude
+                let longitude = document.getElementById("lot").value = position.coords.longitude
+                document.getElementById("result").innerHTML = positionInfo;
+
+                let parisMarker = new H.map.Marker({lat: lattitude, lng: longitude}); //bwaan
+                map.addObject(parisMarker)// bawaan
+            });
+        } else{
+            alert("Sorry, your browser does not support HTML5 geolocation.");
+        }
+
+        }
+     </script>
+   <style type="text/css">
+   #map {
+     height: 425px;
+     width: 80%;
+   }
+   /* Optional: Makes the sample page fill the window. */
+   html, body {
+     height: 80%;
+     margin: 0;
+     padding: 0;
+   }
    </style>
 </head>
 
@@ -61,68 +79,20 @@
   <!-- ##### Hero Area End ##### -->
 
   <!-- ##### Famie Benefits Area Start ##### -->
-  <section class="famie-benefits-area section-padding-100-0 pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="benefits-thumbnail mb-50">
-            <img src="<?=base_url("/cssfarmie/img/bg-img/TES.jpg")?>" alt="">
-          </div>
-        </div>
-      </div>
-
-      <div class="row justify-content-center">
-        <!-- Single Benefits Area -->
-        <div class="col-12 col-sm-4 col-lg">
-          <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="100ms">
-            <img src="<?=base_url("cssfarmie/img/core-img/digger.png")?>" alt="">
-            <h5>Best Services</h5>
-          </div>
-        </div>
-
-        <!-- Single Benefits Area -->
-        <div class="col-12 col-sm-4 col-lg">
-          <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="300ms">
-            <img src="<?=base_url("cssfarmie/img/core-img/windmill.png")?>" alt="">
-            <h5>Farm Experiences</h5>
-          </div>
-        </div>
-
-        <!-- Single Benefits Area -->
-        <div class="col-12 col-sm-4 col-lg">
-          <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="500ms">
-            <img src="<?=base_url("/cssfarmie/img/core-img/cereals.png")?>" alt="">
-            <h5>100% Natural</h5>
-          </div>
-        </div>
 
 
-        <div class="col-12 col-sm-4 col-lg">
-          <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="700ms">
-            <img src="<?=base_url("/cssfarmie/img/core-img/tractor.png")?>" alt="">
-            <h5>Farm Equipment</h5>
-          </div>
-        </div>
+  <!-- <section class="testimonial-area bg-img bg-overlay section-padding-100 jarallax" style="background-image: url('img/bg-img/15.jpg');"> -->
+<section class="newsletter-area section-padding-100 bg-img bg-overlay jarallax">
+  <center>
+    <div id="map"></div>
+  </center>
+</section>
 
-        <!-- Single Benefits Area -->
-        <div class="col-12 col-sm-4 col-lg">
-          <div class="single-benefits-area wow fadeInUp mb-50" data-wow-delay="900ms">
-            <img src="<?=base_url("/cssfarmie/img/core-img/sunrise.png")?>" alt="">
-            <h5>Organic food</h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="testimonial-area bg-img bg-overlay section-padding-100 jarallax" style="background-image: url('img/bg-img/15.jpg');">
-    <center>
-      <span class="map-icon map-icon-point-of-interest"></span>
-      <div id="map"></div>
-    </center>
     <br>
   </section>
-
+  <input type="hidden" id="lat"></input>
+  <input type="hidden" id="lot"></input>
+  <div id="result"></div>
   <section class="team-member-area section-padding-100-0">
     <div class="container">
       <div class="row">
@@ -160,35 +130,47 @@
         </form>
         <?php echo form_close(); ?>
 <br>
+
       <div class="row">
+<?php
+$tes = $data_tempat;
+if($tes!=null ){
+?>
+<?php
+  $no = $this->uri->segment('3') + 1;
+  foreach ($data_tempat as $key) { ?>
+<div class="col-12 col-sm-6 col-lg-3">
+  <div class="single-team-member mb-100 wow fadeInUp" data-wow-delay="100ms">
+    <!-- Team Thumbnail -->
+    <div class="team-img">
+      <img src=<?=base_url("assets/upload")."/".$key->foto?> width="30%" height="30%">
+      <!-- Social Info -->
 
+    </div>
+    <!-- Team Member Info -->
+    <div class="team-member-info">
+      <h5><?php echo $key->nama; ?></h5>
+      <h6><?php echo word_limiter ($key->penjelasan,4); ?></h6>
+    </div>
+      <center>
+        <a href="<?=site_url()?>/UserCont/baca/<?php echo $key->id ?>" type="Button" class="btn btn-info" align="center">Baca</a>
+        <a href="<?=site_url()?>/UserCont/peta/<?php echo $key->id ?>" type="Button" class="btn btn-success" align="center">Peta</a>
+        <a href="<?=site_url()?>/JalurCont/PetunjukArah/<?php echo $key->id ?>" type="Button" class="btn btn-warning" align="center">Jalur</a>
+      </center>
+
+  </div>
+
+</div>
+<?php } ?>
+<?php echo $this->pagination->create_links(); ?>
+ <?php }
+else { ?>
+<!DOCTYPE html>
+<h3>Data tidak ditemukan</h3>
+<?php }
+ ?>
         <!-- Single Team Member -->
-        <?php
-          $no = $this->uri->segment('3') + 1;
-          foreach ($data_tempat as $key) { ?>
-        <div class="col-12 col-sm-6 col-lg-3">
-          <div class="single-team-member mb-100 wow fadeInUp" data-wow-delay="100ms">
-            <!-- Team Thumbnail -->
-            <div class="team-img">
-              <img src=<?=base_url("assets/upload")."/".$key->foto?> width="30%" height="30%">
-              <!-- Social Info -->
 
-            </div>
-            <!-- Team Member Info -->
-            <div class="team-member-info">
-              <h5><?php echo $key->nama; ?></h5>
-              <h6><?php echo word_limiter ($key->penjelasan,4); ?></h6>
-            </div>
-              <center>
-                <a href="<?=site_url()?>/UserCont/baca/<?php echo $key->id ?>" type="Button" class="btn btn-info" align="center">Baca</a>
-                <a href="<?=site_url()?>/UserCont/peta/<?php echo $key->id ?>" type="Button" class="btn btn-success" align="center">Peta</a>
-              </center>
-
-          </div>
-
-        </div>
-      <?php } ?>
-      <?php echo $this->pagination->create_links(); ?>
 
       </div>
     </div>
@@ -198,47 +180,78 @@
   <!-- ##### Footer Area Start ##### -->
 
 </body>
-<script>
-var map;
-      function initMap() {
-          map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 16,
-              center: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $long; ?>),
-              mapTypeId: 'roadmap'
-          });
+<script type="text/javascript">
 
-          var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-          var icons = {
-              library: {
-                  icon: iconBase + 'library_maps.png'
-              },
-              info: {
-                  icon: iconBase + 'info-i_maps.png'
-              },
+function addMarkersToMap(map) {
+  var parisMarker = new H.map.Marker({lat:<?php echo $lat; ?>, lng:<?php echo $long; ?>});
+  map.addObject(parisMarker);
+}
 
+var platform = new H.service.Platform({
+  app_id: '4qSSxfTAP2vjFv3fCYyq',
+app_code: 'Q9u5ShF8yhey8ok1-R1HWQ',
+  useHTTPS: true
+});
+var pixelRatio = window.devicePixelRatio || 1;
+var defaultLayers = platform.createDefaultLayers({
+  tileSize: pixelRatio === 1 ? 256 : 512,
+  ppi: pixelRatio === 1 ? undefined : 320
+});
 
-          };
+//Step 2: initialize a map - this map is centered over Europe
+var map = new H.Map(document.getElementById('map'),
+  defaultLayers.normal.map,{
+  center: {lat:<?php echo $lat; ?>, lng:<?php echo $long; ?>},
+  zoom: 15,
+  pixelRatio: pixelRatio
+});
 
+//Step 3: make the map interactive
+// MapEvents enables the event system
+// Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
-          var features = [
-              {
-                  position: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $long; ?>),
-                  type: 'info',
-              },
+// Create the default UI components
+var ui = H.ui.UI.createDefault(map, defaultLayers);
 
-          ];
-
-          // Create markers.
-          features.forEach(function(feature) {
-              var marker = new google.maps.Marker({
-                  position: feature.position,
-                  icon: icons[feature.type].icon,
-                  map: map
-              });
-          });
+// Now use the map as required...
+addMarkersToMap(map);
+///////////////////////////////////
+function showPosition(){
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(function(position){
+                var positionInfo = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
+                document.getElementById("result").innerHTML = positionInfo;
+            });
+        } else{
+            alert("Sorry, your browser does not support HTML5 geolocation.");
+        }
+    }
+    function locateUser(map) {
+      if (nokia.maps.positioning.Manager) {
+        var positioning = new nokia.maps.positioning.Manager();
+        positioning.getCurrentPosition(
+          function (position) {
+            var coords = position.coords,
+              marker = new nokia.maps.map.StandardMarker(coords),
+              accuracyCircle = new nokia.maps.map.Circle(coords, coords.accuracy);
+            map.objects.addAll([accuracyCircle, marker]);
+            map.zoomTo(accuracyCircle.getBoundingBox());
+          },
+          function (error) {
+            var errorMsg = 'Location could not be determined: ',
+              errors = ['PERMISSION_DENIED', 'POSITION_UNAVAILABLE', 'TIMEOUT'];
+            if (error.code < 4) {
+              errorMsg += errors[error - 1];
+            } else {
+              errorMsg += 'UNKNOWN ERROR';
+            }
+            alert(errorMsg);
+          },
+          {maximumAge: 750}
+        );
       }
-</script>
+    }
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLzlThSr-GpLXnwICjCvAxg6VOTT_Tbcs&callback=initMap"
-async defer></script>
+</script>
 </html>

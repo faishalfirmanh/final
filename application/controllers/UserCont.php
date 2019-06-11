@@ -73,7 +73,8 @@ class UserCont extends CI_Controller {
 		$data['kecamatan']=$this->TempatModel->PanggilKecamatan();
 		 $data["data_tempat"]=$this->TempatModel->datakategori($kategori,$kecamatan,$config['per_page'],$from); //isi array harus sama dengan view yang dilist
 		 $data["kategori"]=$kategori;
-		 $this->load->view('User/Baru/home', $data);
+		  $this->load->view('User/Baru/home', $data);
+		 //$this->load->view('User/Baru/Jalur', $data);
 	}
 	public function HomenonCandi($kecamatan){
 
@@ -95,6 +96,7 @@ class UserCont extends CI_Controller {
 		 $data["data_tempat"]=$this->TempatModel->datakategori($kategori,$kecamatan,$config['per_page'],$from); //isi array harus sama dengan view yang dilist
 		 $data["kategori"]=$kategori;
 		 $this->load->view('User/Baru/home', $data);
+		// $this->load->view('User/Baru/Jalur', $data);
 	}
 
 
@@ -113,8 +115,8 @@ class UserCont extends CI_Controller {
 
 		$data['kecamatan']=$this->TempatModel->PanggilKecamatan();
  		 $data["data_tempat"]=$this->TempatModel->data($config['per_page'],$from); //isi array harus sama dengan view yang dilist
- 		 $this->load->view('User/Baru/home', $data);
-	  //$this->load->view('/User/Baru/home');
+ 		 $this->load->view('User/Baru/home', $data); //tes
+	  //$this->load->view('/User/Baru/Jalur',$data);
 	 }
 
 	 public function peta($value)
@@ -137,6 +139,10 @@ class UserCont extends CI_Controller {
 	{
 		 $this->load->view('/User/Baru/about');
 	}
+		public function Jalur()
+	 {
+			$this->load->view('/User/Baru/Jalur');
+	 }
 
 	public function Baca($id)
 	{

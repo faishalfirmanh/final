@@ -24,7 +24,7 @@
           <div class="card-body">
             <div>
             <div class="" align="center">
-              <img src=<?=base_url("assets/upload")."/".$key->foto?>>
+              <img src=<?=base_url("assets/upload")."/".$key->foto?> class="gambar">
             </div>
             <h5 class="card-title"><?php echo $key->nama; ?></h5>
             <p class="card-text"><?php echo word_limiter ($key->penjelasan,4); ?></p>
